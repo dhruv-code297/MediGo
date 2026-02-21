@@ -34,7 +34,7 @@ import {
 import { setUserRole } from "@/actions/onboarding"
 import { SPECIALTIES } from "@/lib/specialities"
 import useFetch from "@/hooks/use-fetch"
-// import { doctorFormSchema } from "@/lib/schema"
+import { doctorFormSchema } from "@/lib/schema"
 
 export default function OnboardingPage() {
   const [step, setStep] = useState("choose-role")

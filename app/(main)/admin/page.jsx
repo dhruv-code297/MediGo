@@ -1,12 +1,13 @@
 import { TabsContent } from "@/components/ui/tabs";
-import { PendingDoctors } from "./components/pending-doctors";
-import { VerifiedDoctors } from "./components/verified-doctors";
-import { PendingPayouts } from "./components/pending-payouts";
+
+
 import {
   getPendingDoctors,
   getVerifiedDoctors,
   getPendingPayouts,
 } from "@/actions/admin";
+import { PendingDoctors } from "./_components/pending-doctors";
+import { VerifiedDoctors } from "./_components/verified-doctors";
 
 export default async function AdminPage() {
   // Fetch all data in parallel
@@ -27,9 +28,9 @@ export default async function AdminPage() {
         <VerifiedDoctors doctors={verifiedDoctorsData.doctors || []} />
       </TabsContent>
 
-      <TabsContent value="payouts" className="border-none p-0">
+       <TabsContent value="payouts" className="border-none p-0">
         <PendingPayouts payouts={pendingPayoutsData.payouts || []} />
-      </TabsContent>
+      </TabsContent> 
     </>
   );
 } 
