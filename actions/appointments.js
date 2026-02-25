@@ -4,17 +4,17 @@ import { db } from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 import { deductCreditsForAppointment } from "@/actions/credits";
-import { Vonage } from "@vonage/server-sdk";
-import { addDays, addMinutes, format, isBefore, endOfDay } from "date-fns";
+import { Video } from "@vonage/video";
 import { Auth } from "@vonage/auth";
+import { addDays, addMinutes, format, isBefore, endOfDay } from "date-fns";
 
 // Initialize Vonage Video API client
 const credentials = new Auth({
   applicationId: process.env.NEXT_PUBLIC_VONAGE_APPLICATION_ID,
   privateKey: process.env.VONAGE_PRIVATE_KEY,
 });
-const options = {};
-const vonage = new Vonage(credentials, options);
+
+const video = new Video(credentials);
 
 /**
  * Book a new appointment with a doctor
@@ -148,7 +148,7 @@ export async function bookAppointment(formData) {
  */
 async function createVideoSession() {
   try {
-    const session = await vonage.video.createSession({ mediaMode: "routed" });
+    const session = await video.createSession({ mediaMode: "routed" });
     return session.sessionId;
   } catch (error) {
     throw new Error("Failed to create video session: " + error.message);
@@ -229,7 +229,7 @@ export async function generateVideoToken(formData) {
     });
 
     // Generate the token with appropriate role and expiration
-    const token = vonage.video.generateClientToken(appointment.videoSessionId, {
+    const token = video.generateClientToken(appointment.videoSessionId, {
       role: "publisher", // Both doctor and patient can publish streams
       expireTime: expirationTime,
       data: connectionData,

@@ -25,11 +25,12 @@ export function PageHeader({
       </Link>
 
       {/* TITLE SECTION */}
-      <div className="flex items-end gap-4 relative">
+      <div className="flex items-center gap-6 relative flex-wrap">
 
         {icon && (
-          <div className="relative flex items-center justify-center">
-            <div className="absolute w-20 h-20 bg-blue-600/10 blur-2xl rounded-full"></div>
+          <div className="relative flex items-center justify-center shrink-0">
+            {/* Glow */}
+            <div className="absolute w-20 h-20 bg-blue-600/10 blur-2xl rounded-full pointer-events-none"></div>
 
             <div className="relative text-blue-400">
               {React.cloneElement(icon, {
@@ -39,9 +40,10 @@ export function PageHeader({
           </div>
         )}
 
-        <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+        <h1 className="min-w-0 text-4xl md:text-5xl font-bold leading-tight bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent break-words">
           {title}
         </h1>
+
       </div>
     </div>
   )

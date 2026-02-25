@@ -7,11 +7,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   ArrowRight,
   Sparkles,
-  Star,
+  
   CheckCircle,
-  BrainCircuit,
-  Shield,
-  Lock,
+
   Github,
   Twitter,
   Linkedin
@@ -73,7 +71,7 @@ export default function Home() {
 
             <motion.div variants={fadeUp}>
               <Badge className="bg-blue-600/10 text-blue-400 border-blue-600/20">
-                AI-Powered Digital Healthcare
+               Healthcare Made Simple
               </Badge>
             </motion.div>
 
@@ -149,6 +147,7 @@ export default function Home() {
           ))}
         </div>
       </motion.section>
+      
 
       {/* CREDIT SYSTEM */}
       <section className="py-24 border-t border-slate-800 max-w-3xl mx-auto px-6 space-y-6">
@@ -158,27 +157,72 @@ export default function Home() {
             <p className="text-slate-400" dangerouslySetInnerHTML={{ __html: benefit }}/>
           </div>
         ))}
+        
       </section>
 
       {/* TESTIMONIALS */}
-      <section className="py-24 border-t border-slate-800">
-        <div className="container mx-auto px-6 grid md:grid-cols-3 gap-8">
-          {testimonials.map((t, i) => (
-            <Card key={i} className="bg-slate-900 border-slate-800">
-              <CardContent className="p-8 space-y-4">
-                <div className="flex gap-1 text-blue-400">
-                  {[...Array(5)].map((_,i)=><Star key={i} size={18}/>)}
-                </div>
-                <p className="text-slate-400">“{t.quote}”</p>
-                <div>
-                  <h4 className="font-semibold">{t.name}</h4>
-                  <p className="text-sm text-slate-500">{t.role}</p>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
+       <section className="py-24 bg-slate-950 relative overflow-hidden">
+  {/* Background Glow */}
+  <div className="absolute -top-32 -right-32 w-96 h-96 bg-blue-600/10 blur-3xl rounded-full"></div>
+
+  <div className="container mx-auto px-6 relative">
+    <div className="text-center mb-20">
+      <Badge
+        variant="outline"
+        className="bg-blue-600/10 border-blue-600/30 px-4 py-1 text-blue-400 text-sm font-medium mb-4"
+      >
+        Success Stories
+      </Badge>
+
+      <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+        What Our Users Say
+      </h2>
+
+      <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+        Real experiences from patients and doctors using Medigo.
+      </p>
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {testimonials.map((testimonial, index) => (
+        <Card
+          key={index}
+          className="bg-slate-900 border border-slate-800 hover:border-blue-600/40 hover:-translate-y-2 transition-all duration-300 shadow-lg"
+        >
+          <CardContent className="p-8 space-y-6">
+
+            {/* Profile */}
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 rounded-xl bg-blue-600/10 flex items-center justify-center">
+                <span className="text-blue-400 font-bold text-lg">
+                  {testimonial.initials}
+                </span>
+              </div>
+
+              <div>
+                <h4 className="font-semibold text-white text-lg">
+                  {testimonial.name}
+                </h4>
+                <p className="text-sm text-slate-400">
+                  {testimonial.role}
+                </p>
+              </div>
+            </div>
+
+            {/* Quote */}
+            <p className="text-slate-400 leading-relaxed text-sm">
+              “{testimonial.quote}”
+            </p>
+
+            {/* Subtle bottom accent line */}
+            <div className="h-[1px] bg-gradient-to-r from-transparent via-blue-600/40 to-transparent"></div>
+
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* PRICING */}
       <section className="py-24 border-t border-slate-800 text-center">

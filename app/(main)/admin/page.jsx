@@ -8,6 +8,7 @@ import {
 } from "@/actions/admin";
 import { PendingDoctors } from "./_components/pending-doctors";
 import { VerifiedDoctors } from "./_components/verified-doctors";
+import { PendingPayouts } from "./_components/pending-payouts";
 
 export default async function AdminPage() {
   // Fetch all data in parallel
