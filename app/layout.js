@@ -6,6 +6,7 @@ import { dark } from "@clerk/themes";
 import { Toaster } from "sonner";
 import  Header  from "@/components/header";
 
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -44,6 +45,7 @@ export default function RootLayout({ children }) {
             enableSystem={false}
             disableTransitionOnChange
           >
+
             {/* Subtle background glow */}
             <div className="fixed inset-0 -z-10 bg-slate-950">
               <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/10 blur-3xl rounded-full" />
@@ -53,6 +55,7 @@ export default function RootLayout({ children }) {
 
             <main className="min-h-screen">
               {children}
+        
             </main>
 
             <Toaster

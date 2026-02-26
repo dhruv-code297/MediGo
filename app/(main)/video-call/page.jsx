@@ -1,9 +1,7 @@
-import React from 'react'
+import VideoCall from "./video-call-ui";
 
-const VideoCallPage = async ({searchParams}) => {
+export default async function VideoCallPage({ searchParams }) {
+  const { sessionId, token } = await searchParams;
 
-    const {sessionId, token} = await searchParams();
-  return <VideoCall sessionId={sessionId} token={token} />
+  return <VideoCall sessionId={sessionId} token={token} />;
 }
-
-export default VideoCallPage

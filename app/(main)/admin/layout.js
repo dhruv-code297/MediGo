@@ -1,32 +1,33 @@
-import { verifyAdmin } from "@/actions/admin"
-import { PageHeader } from "@/components/page-header"
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { verifyAdmin } from "@/actions/admin";
+import { PageHeader } from "@/components/page-header";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   AlertCircle,
   CreditCard,
   Users,
   ShieldCheck
-} from "lucide-react"
-import { redirect } from "next/navigation"
+} from "lucide-react";
+import { redirect } from "next/navigation";
 
 export const metadata = {
   title: "Admin Dashboard | Medigo",
   description:
     "Administrative control panel for managing doctors, verifications, and financial operations within Medigo.",
-}
+};
 
 export default async function AdminLayout({ children }) {
-  const isAdmin = await verifyAdmin()
+  const isAdmin = await verifyAdmin();
 
   if (!isAdmin) {
-    redirect("/onboarding")
+    redirect("/onboarding");
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white px-6 py-10">
+    <div className="min-h-screen bg-slate-950 text-white px-8 py-12">
 
-      {/* HEADER */}
       <div className="max-w-7xl mx-auto">
+
+        {/* HEADER */}
         <PageHeader
           icon={<ShieldCheck />}
           title="Admin Control Center"
@@ -34,55 +35,110 @@ export default async function AdminLayout({ children }) {
           backLabel="Back to Platform"
         />
 
-        {/* CONTENT GRID */}
-        <Tabs
-          defaultValue="pending"
-          className="grid grid-cols-1 md:grid-cols-4 gap-8"
-        >
+        {/* Proper spacing below title */}
+        <div className="mt-20">
 
-          {/* SIDEBAR */}
-          <TabsList
-            className="
-              md:col-span-1 
-              bg-slate-900 
-              border border-slate-800 
-              rounded-xl 
-              p-3 
-              flex md:flex-col gap-2
-            "
+          <Tabs
+            defaultValue="pending"
+            className="grid grid-cols-1 md:grid-cols-[240px_1fr] gap-20"
           >
-            <TabsTrigger
-              value="pending"
-              className="flex items-center gap-2 px-4 py-3 justify-start data-[state=active]:bg-blue-600 data-[state=active]:text-white"
-            >
-              <AlertCircle className="h-4 w-4" />
-              Pending Verification
-            </TabsTrigger>
 
-            <TabsTrigger
-              value="doctors"
-              className="flex items-center gap-2 px-4 py-3 justify-start data-[state=active]:bg-blue-600 data-[state=active]:text-white"
-            >
-              <Users className="h-4 w-4" />
-              Doctors
-            </TabsTrigger>
+            {/* SIDEBAR */}
+            <div>
+              <TabsList
+                className="
+                  w-full
+                  flex flex-col
+                  gap-6
+                  bg-transparent
+                  border-none
+                  p-0
+                  rounded-2xl
+                  shadow-none
+                "
+              >
 
-            <TabsTrigger
-              value="payouts"
-              className="flex items-center gap-2 px-4 py-3 justify-start data-[state=active]:bg-blue-600 data-[state=active]:text-white"
-            >
-              <CreditCard className="h-4 w-4" />
-              Payouts
-            </TabsTrigger>
-          </TabsList>
+                {/* Pending */}
+                <TabsTrigger
+                  value="pending"
+                  className="
+                    w-full
+                    flex items-center gap-3
+                    px-2 py-2
+                    text-slate-400
+                    justify-start
+                    transition-all duration-200
+                    bg-transparent
+                    rounded-xl
+                    shadow-none
+                    hover:text-white
+                    data-[state=active]:text-blue-400
+                    data-[state=active]:border-l-2
+                    data-[state=active]:border-blue-500
+                  "
+                >
+                  <AlertCircle className="h-4 w-4" />
+                  Pending Verification
+                </TabsTrigger>
 
-          {/* MAIN PANEL */}
-          <div className="md:col-span-3 bg-slate-900 border border-slate-800 rounded-xl p-8 shadow-xl">
-            {children}
-          </div>
+                {/* Doctors */}
+                <TabsTrigger
+                  value="doctors"
+                  className="
+                    w-full
+                    flex items-center gap-3
+                    px-2 py-2
+                    text-slate-400
+                    justify-start
+                    transition-all duration-200
+                    bg-transparent
+                    rounded-xl
+                    shadow-none
+                    hover:text-white
+                    data-[state=active]:text-blue-400
+                    data-[state=active]:border-l-2
+                    data-[state=active]:border-blue-500
+                  "
+                >
+                  <Users className="h-4 w-4" />
+                  Doctors
+                </TabsTrigger>
 
-        </Tabs>
+                {/* Payouts */}
+                <TabsTrigger
+                  value="payouts"
+                  className="
+                    w-full
+                    flex items-center gap-3
+                    px-2 py-2
+                    text-slate-400
+                    justify-start
+                    transition-all duration-200
+                    bg-transparent
+                    rounded-xl
+                    shadow-none
+                    hover:text-white
+                    data-[state=active]:text-blue-400
+                    data-[state=active]:border-l-2
+                    data-[state=active]:border-blue-500
+                  "
+                >
+                  <CreditCard className="h-4 w-4" />
+                  Payouts
+                </TabsTrigger>
+
+              </TabsList>
+            </div>
+
+            {/* MAIN PANEL */}
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-12 shadow-2xl">
+              {children}
+            </div>
+
+          </Tabs>
+
+        </div>
       </div>
     </div>
-  )
+  );
 }

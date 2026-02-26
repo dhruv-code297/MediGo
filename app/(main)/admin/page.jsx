@@ -1,6 +1,4 @@
 import { TabsContent } from "@/components/ui/tabs";
-
-
 import {
   getPendingDoctors,
   getVerifiedDoctors,

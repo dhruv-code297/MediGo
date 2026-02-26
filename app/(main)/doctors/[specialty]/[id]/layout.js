@@ -1,4 +1,3 @@
-
 import { getDoctorById } from "@/actions/appointments";
 import { redirect } from "next/navigation";
 import { PageHeader } from "@/components/page-header";
