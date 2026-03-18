@@ -1,0 +1,17 @@
+-- CreateEnum
+CREATE TYPE "UserRole" AS ENUM ('UNASSIGNED', 'PATIENT', 'DOCTOR', 'ADMIN');
+
+-- CreateEnum
+CREATE TYPE "VerificationStatus" AS ENUM ('PENDING', 'VERIFIED', 'REJECTED');
+
+-- CreateEnum
+CREATE TYPE "SlotStatus" AS ENUM ('AVAILABLE', 'BOOKED', 'BLOCKED');
+
+-- CreateEnum
+CREATE TYPE "AppointmentStatus" AS ENUM ('SCHEDULED', 'COMPLETED', 'CANCELLED');
+
+-- CreateEnum
+CREATE TYPE "TransactionType" AS ENUM ('CREDIT_PURCHASE', 'APPOINTMENT_DEDUCTION', 'ADMIN_ADJUSTMENT');
+
+-- CreateEnum
+CREATE TYPE "PayoutStatus" AS ENUM ('PROCESSING', 'PROCESSED');
