@@ -1,4 +1,4 @@
-# 🏥 MediGo – AI-Powered Healthcare Platform
+# 🏥 MediGo – Digital Healthcare Platform
 
 MediGo is a full-stack healthcare platform built with **Next.js 14** that connects **Patients, Doctors, and Admins** in a secure and scalable environment.
 
